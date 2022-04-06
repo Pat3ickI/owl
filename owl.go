@@ -252,12 +252,26 @@ func (r *Root) Text() string {
 	return f(k)
 }
 
-// Attrs returns a map containing all attributes
+// Attrs() returns a map containing all attributes
 func (r *Root) Attrs() map[string]string {
 	if (r.Node.Type != html.ElementNode) && (len(r.Node.Attr) == 0) {
 		return nil
 	}
 	return getKeyValue(r.Node.Attr)
+}
+
+// Attrs just like Atr
+
+func (r *Root) Attr(s string) (string, bool) {
+	if (r.Node.Type != html.ElementNode) && (len(r.Node.Attr) == 0) {
+		return " ", false
+	}
+	for _, a := range r.Node.Attr {
+		if a.Key == s {
+			return a.Val, true
+		}
+	}
+	return "", false
 }
 
 func (r Root) Children() Roots {
