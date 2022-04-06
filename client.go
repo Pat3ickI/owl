@@ -29,7 +29,7 @@ type Parameters struct {
 	HttpClient     *http.Client
 }
 
-var defaultParameters Parameters = Parameters{
+var DefaultParameters Parameters = Parameters{
 	Header: map[string]string{
 		"User-Agent":    "Owl Mozilla/5.0 Firefox/96.0",
 		"Accept":        "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
@@ -50,10 +50,10 @@ func NewClient(para *Parameters) *Client {
 		client Client
 	)
 	if para != nil {
-		client.Header = defaultParameters.Header
-		client.Cookies = defaultParameters.Cookies
-		client.RequestTimeout = defaultParameters.RequestTimeout
-		client.Timeout = defaultParameters.Timeout
+		client.Header = DefaultParameters.Header
+		client.Cookies = DefaultParameters.Cookies
+		client.RequestTimeout = DefaultParameters.RequestTimeout
+		client.Timeout = DefaultParameters.Timeout
 	} else {
 		client.Header = para.Header
 		client.Cookies = para.Cookies
